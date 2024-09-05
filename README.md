@@ -1,5 +1,2 @@
-# Nikolas-project
-# Keramikas preču internetveikals
-
-
-dfwefewef
+# BERGS WORKSHOP
+## Auto detailing
