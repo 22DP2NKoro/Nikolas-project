@@ -1,5 +1,5 @@
 # BERGS WORKSHOP
-## Auto Detailing Pakalpojumi - README
+## Auto Detailing pakalpojumi
 
 ## 1. Uzņēmuma pārskats
 - ko mēs piedāvājam.
