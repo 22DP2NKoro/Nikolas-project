@@ -43,7 +43,6 @@
 - Telefons:22222222
 - E-pasts: nikola@automobilis
 - Adrese: jurmala
-- Rezervācijas forma: varbut tada bus
 - Sociālie tīkli: ig fb tiktok
 
 ## 8. Papildus pakalpojumi
