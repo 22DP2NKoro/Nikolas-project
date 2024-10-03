@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="lv"> 
+<head>
+    <meta charset="UTF-8"> <!-- UTF-8, lai atbalsta dažādus simbolus -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Nodrošina, ka var skatities dažādās ierīcēs -->
+    <title>BERGS WORKSHOP - Pakalpojumi</title> <!--virsraksts-->
+    
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0; /* Noņemu noklusētās malas */
+            padding: 0; /* noņemu noklusēto iekšējo atstarpi */
+            background-color: #f0f0f5; /* peleks fons */
+            color: #444; /* peleka teksta krasa */
+        }
+
+        header {
+            background: #333; /* tumši peleks fons galvenei */
+            color: white; /* Balta teksta krāsa */
+            padding: 20px; /* 20px atstarpe no iekšmalas */
+            text-align: center; /*lai butu saturs horizontali centrēju */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* lai galvenei ir tāda ēniņa */
+        }
+
+        /* Saite, kas ved uz galveno lapu no galvenes virsraksta */
+        header h1 a {
+            color: white; 
+            text-decoration: none; /* Noņēmu apakšsvītru no saites */
+        }
+
+        nav a {
+            color: white; /* Baltas navigācijas saitītes */
+            margin: 0 20px; /* atstarpe starp saitēm */
+            padding: 10px 15px; /* Iekšējā atstarpīte saitēm */
+            transition: background 0.3s, color 0.3s; /* pāreja hover efektam */
+            font-weight: bold; /* Trekns fonta stils saitēm lai smuki izcelti*/
+            text-decoration: none; 
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2); /* gaišs fons hover efektam */
+            color: #ff6666; /* Sarkanīga teksta krāsa hover efektam */
+            border-radius: 5px; /* lai malas apaļīgas paliek kad ir hovers */
+        }
+
+        /* Dropdown izvēlne (pakalpojumi) */
+        .dropdown {
+            position: relative; 
+            display: inline-block; /* lai ir kā viens bloks */
+        }
+
+        .dropdown-content {
+            display: none; /* sākumā dropdown saturu neredz*/
+            position: absolute; /* pozicionēju dropdown saturu absolūti? nu ta noteikti vajag*/
+            background-color: white;
+            min-width: 200px; /* platums dropdownam */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* ēniņa dropdownam*/
+            z-index: 1; /* lai viņš ir priekšplānā*/
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: #007BFF; /* zilas dropdown saites */
+            padding: 12px 16px; 
+            text-decoration: none; /* noņēmu apakšsvītru no dropdown saitēm */
+            display: block; /* lai katra saite ir savā rindiņā*/
+            transition: background 0.3s; /* Pāreja hoverim, tads efektiņš */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1; /* gaišī peleks tonis*/
+            color: #ff6666; /*sarkanīga saites krāsa hover stāvoklī */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block; /* Dropdown parādās, kad uzlido pelītes bultiņa */
+        }
+
+        /* Pakalpojumu bloku stilizācija */
+        .service-container {
+            display: flex; /* Flex izkārtojums, lai elementi automātiski izkārtotos horizontāli */
+            flex-wrap: wrap; /* Flex saturs tiks pārnests uz jaunu rindu, ja pietrūkst vietas */
+            justify-content: space-around; /* Vienmērīgi sadalām pakalpojumu blokus horizontāli */
+            padding: 20px; /* Atstarpe ap visu konteineru */
+        }
+
+        .service-box {
+            width: 30%; /* Katrs pakalpojuma bloks aizņem 30% no pieejamā platuma */
+            background: white; /* Balts fons pakalpojuma blokam */
+            border-radius: 10px; /* Noapaļojam malas */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Pievienojam ēnu katram pakalpojuma blokam */
+            margin-bottom: 20px; /* Atstarpe apakšā starp blokiem */
+            cursor: pointer; /* Mainām kursoru uz pointer, kad tas ir virs bloka */
+            transition: transform 0.3s; /* Pāreja transformācijai hover efektā */
+        }
+
+        .service-box:hover {
+            transform: scale(1.05); /* Nedaudz palielinām bloku, kad uz to uzved kursoru */
+        }
+
+        .service-box img {
+            width: 100%; /* Attēls aizņem visu bloka platumu */
+            border-radius: 10px 10px 0 0; /* Noapaļojam tikai augšējos stūrus */
+        }
+
+        .service-box h3 {
+            padding: 15px; /* Atstarpe ap virsrakstu */
+            margin: 0; /* Noņemam virsraksta noklusēto margin */
+            color: #444; /* Tumši pelēks virsraksta teksts */
+            font-size: 1.5em; /* Virsraksta fonta izmērs */
+        }
+
+        .service-info {
+            display: none; /* Slēpjam pakalpojuma informāciju pēc noklusējuma */
+            padding: 15px; /* Atstarpe informācijas blokā */
+        }
+
+        .service-info.active {
+            display: block; /* Parādām informāciju, kad tā ir aktīva */
+        }
+
+        /* Kājene (footer) stilizācija */
+        footer {
+            background-color: #333; /* Tumši pelēks fons */
+            color: white; /* Balts teksts */
+            text-align: center; /* Centrējam saturu */
+            padding: 20px 0; /* Vertikāla atstarpe kājenē */
+            margin-top: 40px; /* Atstarpe starp galveno saturu un kājeni */
+        }
+
+        footer p {
+            margin: 5px 0; /* Vertikālas atstarpes starp kājenes tekstiem */
+        }
+
+        footer a {
+            color: #ff6666; /* Sarkanīga saites krāsa kājenē */
+            transition: color 0.3s; /* Pāreja, mainot saites krāsu hover stāvoklī */
+        }
+
+        footer a:hover {
+            color: #ff9999; /* Gaišāka sarkanīga krāsa hover stāvoklī */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Galvene ar logotipu un navigācijas izvēlni -->
+    <header>
+        <h1><a href="index.html">BERGS WORKSHOP</a></h1> <!-- Saite uz galveno lapu logotipa vietā -->
+        <nav>
+            <a href="index.html">Par mums</a> <!-- Saite uz galveno lapu -->
+            <div class="dropdown">
+                <a href="#">Pakalpojumi</a> <!-- Dropdown izvēlne -->
+                <div class="dropdown-content">
+                    <a href="#internal-detailing">Iekšējais detailing</a> <!-- Iekšējā navigācija uz atbilstošo sekciju -->
+                    <a href="#exterior-detailing">Ārējais detailing</a> 
+                    <a href="#specialized-services">Specializētie pakalpojumi</a>
+                </div>
+            </div>
+            <a href="#">Cenas</a> <!-- Saite uz cenrādi (vēl nav pievienots) -->
+            <a href="#">Mūsu darbi</a> <!-- Saite uz galeriju (vēl nav pievienots) -->
+        </nav>
+    </header>
+
+    <!-- Galvenais saturs - Pakalpojumu saraksts -->
+    <main>
+        <div class="service-container">
+            <div class="service-box" id="internal-detailing">
+                <img src="https://surfnshine.com/wp-content/uploads/2023/10/interior-detailing.jpg" alt="Iekšējais detailing"> <!-- Attēls, kas saistīts ar iekšējo tīrīšanu -->
+                <h3>Iekšējais detailing</h3>
+                <div class="service-info">
+                    <p>Pilna salona tīrīšana.</p>
+                    <p>Audumu un ādas apstrāde.</p>
+                    <p>Smaržu un traipu noņemšana.</p>
+                </div>
+            </div>
+
+            <div class="service-box" id="exterior-detailing">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcPMQjIwvGPhi0ig8CpzRio9YvMXxPADiNSw&s" alt="Ārējais detailing"> <!-- Attēls, kas saistīts ar ārējo tīrīšanu -->
+                <h3>Ārējais detailing</h3>
+                <div class="service-info">
+                    <p>Pilna auto mazgāšana, pulēšana un vaskošana.</p>
+                    <p>Keramiskie un nano pārklājumi ilgstošai aizsardzībai.</p>
+                    <p>Riepu un disku tīrīšana un aizsardzība.</p>
+                </div>
+            </div>
+
+            <div class="service-box" id="specialized-services">
+                <img src="https://s25180.pcdn.co/wp-content/uploads/2018/08/iStock-543601188.jpg" alt="Specializētie pakalpojumi"> <!-- Attēls, kas saistīts ar specializētajiem pakalpojumiem -->
+                <h3>Specializētie pakalpojumi</h3>
+                <div class="service-info">
+                    <p>Motora nodalījuma tīrīšana.</p>
+                    <p>Ozonēšana un smaržu likvidēšana.</p>
+                    <p>Lukturu pulēšana un aizsardzība.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Kājene ar kontaktinformāciju un saistēm uz sociālajiem tīkliem -->
+    <footer>
+        <p>&copy; 2024 BERGS WORKSHOP.</p> <!-- Autortiesību paziņojums -->
+        <p>Seko mums: 
+            <a href="#">Instagram</a> |  <!-- Saites uz sociālajiem tīkliem -->
+            <a href="#">Facebook</a> | 
+            <a href="#">TikTok</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript, kas ļauj izplest un sašaurināt pakalpojuma aprakstu, kad uzklikšķina uz pakalpojuma -->
+    <script>
+        document.querySelectorAll('.service-box').forEach(box => {
+            box.addEventListener('click', () => {  /* Pievienojam click eventu katram pakalpojuma blokam */
+                document.querySelectorAll('.service-info').forEach(info => {
+                    if (info !== box.querySelector('.service-info')) {
+                        info.classList.remove('active');  /* Noņemam aktīvo klasi visiem citiem aprakstiem */
+                    }
+                });
+
+                const info = box.querySelector('.service-info');
+                info.classList.toggle('active');  /* Pārslēdzam aktīvo klasi uzklikšķinātajam aprakstam */
+            });
+        });
+    </script>
+
+</body>
+</html>
