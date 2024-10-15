@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="lv"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Es ari no telefona skatīšos -->
+    <title>BERGS WORKSHOP - Cenas</title> <!--virsraksts-->
+    <body>
+
+        <header>
+            <h1><a href="index.html">BERGS WORKSHOP</a></h1>
+            <nav>
+                <a href="index.html">Par mums</a>
+                <div class="dropdown">
+                    <a href="pakalpojumi.html">Pakalpojumi</a>
+                    <div class="dropdown-content">
+                        <a href="pakalpojumi.html#internal-detailing">Iekšējais detailing</a>
+                        <a href="pakalpojumi.html#exterior-detailing">Ārējais detailing</a>
+                        <a href="pakalpojumi.html#specialized-services">Specializētie pakalpojumi</a>
+                    </div>
+                </div>
+                <a href="cenas.html">Cenas</a>
+                <a href="musudarbi.html">Mūsu darbi</a>
+            </nav>
+        </header>
+    
+        <!-- Cenas -->
+        <main>
+            <table>
+                <tr>
+                    <th>Pakalpojums</th>
+                    <th>Cena</th>
+                </tr>
+                <tr>
+                    <td>Iekšējais detailing</td>
+                    <td>€50 - €100</td>
+                </tr>
+                <tr>
+                    <td>Ārējais detailing</td>
+                    <td>€70 - €150</td>
+                </tr>
+                <tr>
+                    <td>Motora nodalījuma tīrīšana</td>
+                    <td>€40 - €80</td>
+                </tr>
+                <tr>
+                    <td>Ozonēšana</td>
+                    <td>€30 - €60</td>
+                </tr>
+                <tr>
+                    <td>Lukturu pulēšana</td>
+                    <td>€25 - €50</td>
+                </tr>
+                <tr>
+                    <td>Pulēšana un vaskošana</td>
+                    <td>€100 - €200</td>
+                </tr>
+            </table>
+        </main>
+    
+        <!--Kājene-->
+        <footer>
+            <p>&copy; 2024 BERGS WORKSHOP.</p>
+            <p>Seko mums: 
+                <a href="#">Instagram</a> |
+                <a href="#">Facebook</a> |
+                <a href="#">TikTok</a>
+            </p>
+        </footer>
+    
+    </body>
+    
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0; /* Noņemu noklusētās malas */
+            padding: 0; /* Noņemu noklusēto iekšējo atstarpi */
+            background-color: #f0f0f5; /* Peleks fons */
+            color: #444; /* Peleka teksta krāsa */
+        }
+
+        header {
+            background: #333; /* Tumši peleks fons galvenei */
+            color: white; /* Balta teksta krāsa */
+            padding: 20px; /* 20px atstarpe no iekšmalas */
+            text-align: center; /* Lai saturs būtu horizontāli centrēts */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Lai galvenei ir ēna */
+        }
+
+        header h1 a {
+            color: white; 
+            text-decoration: none; /* Noņemu apakšsvītru no saites */
+        }
+
+        nav a {
+            color: white; /* Baltas navigācijas saites */
+            margin: 0 20px; /* Atstarpe starp saitēm */
+            padding: 10px 15px; /* Iekšējā atstarpīte saitēm */
+            transition: background 0.3s, color 0.3s; /* Pāreja hover efektam */
+            font-weight: bold; /* Trekns fonts saitēm */
+            text-decoration: none; 
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2); /*Kad hover tad ir gaišs*/
+            color: #ff6666;
+            border-radius: 5px;
+        }
+
+        /* Pakalpojuma drops */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: #007BFF;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #ff6666;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* tabulas stils */
+        table {
+            width: 80%;
+            margin: 50px auto;
+            border-collapse: collapse; /*Noņem starp sunam apmeles starpas*/
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Apakšējā mala katrai šūnai */
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        td {
+            color: #444;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #ff6666;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #ff9999;
+        }
+
+    </style>
+</head>
+
+</html>
