@@ -1,81 +1,20 @@
 <!DOCTYPE html>
-<html lang="lv"> 
+<html lang="lv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BERGS WORKSHOP - Pakalpojumi</title>
-    
-    <header>
-        <h1><a href="index.html">BERGS WORKSHOP</a></h1>
-        <nav>
-            <a href="index.html">Par mums</a>
-            <div class="dropdown">
-                <a href="#">Pakalpojumi</a> <!-- Mans dropdown -->
-                <div class="dropdown-content">
-                    <!-- Lai pogas pogotos lai atveras-->
-                    <a href="#internal-detailing" data-target="internal-detailing">Iekšējais detailing</a>
-                    <a href="#exterior-detailing" data-target="exterior-detailing">Ārējais detailing</a>
-                    <a href="#specialized-services" data-target="specialized-services">Specializētie pakalpojumi</a>
-                </div>
-            </div>
-            <a href="cenas.html">Cenas</a>
-            <a href="musudarbi.html">Mūsu darbi</a>
-        </nav>
-    </header>
-
-    <!-- Pakalpojumu saraksts -->
-    <main>
-        <div class="service-container">
-            <div class="service-box" id="internal-detailing">
-                <img src="https://surfnshine.com/wp-content/uploads/2023/10/interior-detailing.jpg" alt="Iekšējais detailing">
-                <h3>Iekšējais detailing</h3>
-                <div class="service-info">
-                    <p>Pilna salona tīrīšana.</p>
-                    <p>Audumu un ādas apstrāde.</p>
-                    <p>Smaržu un traipu noņemšana.</p>
-                </div>
-            </div>
-
-            <div class="service-box" id="exterior-detailing">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcPMQjIwvGPhi0ig8CpzRio9YvMXxPADiNSw&s" alt="Ārējais detailing">
-                <h3>Ārējais detailing</h3>
-                <div class="service-info">
-                    <p>Pilna auto mazgāšana, pulēšana un vaskošana.</p>
-                    <p>Keramiskie un nano pārklājumi ilgstošai aizsardzībai.</p>
-                    <p>Riepu un disku tīrīšana un aizsardzība.</p>
-                </div>
-            </div>
-
-            <div class="service-box" id="specialized-services">
-                <img src="https://s25180.pcdn.co/wp-content/uploads/2018/08/iStock-543601188.jpg" alt="Specializētie pakalpojumi">
-                <h3>Specializētie pakalpojumi</h3>
-                <div class="service-info">
-                    <p>Motora nodalījuma tīrīšana.</p>
-                    <p>Ozonēšana un smaržu likvidēšana.</p>
-                    <p>Lukturu pulēšana un aizsardzība.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Kājene-->
-    <footer>
-        <p>&copy; 2024 BERGS WORKSHOP.</p>
-        <p>Seko mums: 
-            <a href="#">Instagram</a> | 
-            <a href="#">Facebook</a> | 
-            <a href="#">TikTok</a>
-        </p>
-    </footer>
     <style>
+        /* Vispārīgi stili */
         body {
             font-family: 'Helvetica Neue', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f5;
+            background-color: #f8f9fa;
             color: #444;
         }
 
+        /* Galvene */
         header {
             background: #333;
             color: white;
@@ -87,6 +26,10 @@
         header h1 a {
             color: white;
             text-decoration: none;
+        }
+
+        nav {
+            margin-top: 10px;
         }
 
         nav a {
@@ -136,48 +79,61 @@
             display: block;
         }
 
+        /* Pakalpojumi */
         .service-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
+            padding: 40px 5%;
         }
 
         .service-box {
-            width: 30%;
+            display: flex;
+            align-items: center;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
             cursor: pointer;
-            transition: transform 0.3s;
         }
 
         .service-box:hover {
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
             transform: scale(1.05);
         }
 
         .service-box img {
-            width: 100%;
-            border-radius: 10px 10px 0 0;
+            width: 40%;
+            object-fit: cover;
+            border-radius: 15px 0 0 15px;
+        }
+
+        .service-details {
+            padding: 20px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .service-box h3 {
-            padding: 15px;
             margin: 0;
-            color: #444;
-            font-size: 1.5em;
+            font-size: 2em;
+            color: #333;
         }
 
         .service-info {
             display: none;
-            padding: 15px;
+            margin-top: 15px;
+            font-size: 1em;
+            line-height: 1.5;
+            color: #666;
         }
 
         .service-info.active {
             display: block;
         }
 
+        /* Kājene */
         footer {
             background-color: #333;
             color: white;
@@ -198,35 +154,125 @@
         footer a:hover {
             color: #ff9999;
         }
+
+        /* Responsīvais dizains */
+        @media (max-width: 768px) {
+            .service-box {
+                flex-direction: column;
+            }
+
+            .service-box img {
+                width: 100%;
+                border-radius: 15px 15px 0 0;
+            }
+
+            .service-details {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
-    
+<header>
+    <h1><a href="index.html">BERGS WORKSHOP</a></h1>
+    <nav>
+        <a href="index.html">Par mums</a>
+        <div class="dropdown">
+            <a href="#">Pakalpojumi</a> <!-- Dropdown sākums -->
+            <div class="dropdown-content">
+                <a href="#internal-detailing" data-target="internal-detailing">Iekšējais detailing</a>
+                <a href="#exterior-detailing" data-target="exterior-detailing">Ārējais detailing</a>
+                <a href="#specialized-services" data-target="specialized-services">Specializētie pakalpojumi</a>
+            </div>
+        </div>
+        <a href="cenas.html">Cenas</a>
+        <a href="musudarbi.html">Mūsu darbi</a>
+    </nav>
+</header>
 
-    <script>
-        
-       // Izvēlamies visus pakalpojumu blokus un pievienoju klikšķi
-document.querySelectorAll('.service-box').forEach(function(kaste) {
-    // Ja uzklikšķina uz pakalpojuma bloka
-    kaste.addEventListener('click', function() {
-        
-        // Katram pakalpojuma aprakstam izslēdzam 'active' klasi, ja tas nav uzklikšķinātais lai nradas
-        document.querySelectorAll('.service-info').forEach(function(informacija) {
-            if (informacija !== kaste.querySelector('.service-info')) {
-                informacija.classList.remove('active');  // Paslepju visu informaciju
-            }
+<main>
+    <div class="service-container">
+        <div class="service-box" id="internal-detailing">
+            <img src="https://surfnshine.com/wp-content/uploads/2023/10/interior-detailing.jpg" alt="Iekšējais detailing">
+            <div class="service-details">
+                <h3>Iekšējais detailing</h3>
+                <div class="service-info">
+                    <p>Pilna salona tīrīšana.</p>
+                    <p>Audumu un ādas apstrāde.</p>
+                    <p>Smaržu un traipu noņemšana.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-box" id="exterior-detailing">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcPMQjIwvGPhi0ig8CpzRio9YvMXxPADiNSw&s" alt="Ārējais detailing">
+            <div class="service-details">
+                <h3>Ārējais detailing</h3>
+                <div class="service-info">
+                    <p>Pilna auto mazgāšana, pulēšana un vaskošana.</p>
+                    <p>Keramiskie un nano pārklājumi ilgstošai aizsardzībai.</p>
+                    <p>Riepu un disku tīrīšana un aizsardzība.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-box" id="specialized-services">
+            <img src="https://s25180.pcdn.co/wp-content/uploads/2018/08/iStock-543601188.jpg" alt="Specializētie pakalpojumi">
+            <div class="service-details">
+                <h3>Specializētie pakalpojumi</h3>
+                <div class="service-info">
+                    <p>Motora nodalījuma tīrīšana.</p>
+                    <p>Ozonēšana un smaržu likvidēšana.</p>
+                    <p>Lukturu pulēšana un aizsardzība.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 BERGS WORKSHOP.</p>
+    <p>Seko mums:
+        <a href="#">Instagram</a> |
+        <a href="#">Facebook</a> |
+        <a href="#">TikTok</a>
+    </p>
+</footer>
+
+<script>
+    // Pakalpojumu bloku klikšķu notikumi
+    document.querySelectorAll('.service-box').forEach(function(kaste) {
+        kaste.addEventListener('click', function() {
+            // Paslēpj visus pārējos aprakstus
+            document.querySelectorAll('.service-info').forEach(function(informacija) {
+                informacija.classList.remove('active');
+            });
+            // Parāda uzklikšķinātā aprakstu
+            const informacija = kaste.querySelector('.service-info');
+            informacija.classList.toggle('active');
         });
-        
-        // Parāda vai paslēpj uzklikšķinātā pakalpojuma aprakstu
-        const informacija = kaste.querySelector('.service-info');
-        informacija.classList.toggle('active'); // Pārslēdzam "active" klasi
     });
-});
 
-            
-    
-    </script>
+    // Dropdown klikšķu notikumi, kas noved uz atbilstošo pakalpojumu un atver aprakstu
+    document.querySelectorAll('.dropdown-content a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Paņemam mērķa ID no datu atribūta
+            const targetId = this.getAttribute('data-target');
+            const targetBox = document.getElementById(targetId);
+            // Paslēpj visus pārējos aprakstus
+            document.querySelectorAll('.service-info').forEach(function(informacija) {
+                informacija.classList.remove('active');
+            });
+            // Parāda mērķa pakalpojuma aprakstu
+            const infoToShow = targetBox.querySelector('.service-info');
+            infoToShow.classList.add('active');
+            // Scroll to the target box
+            targetBox.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
 
 </body>
 </html>
