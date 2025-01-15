@@ -201,5 +201,28 @@
         }
 
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Pārbauda, vai URL ir fragments (piemēram, #internal-detailing)
+            const hash = window.location.hash;
+            if (hash) {
+                const targetBox = document.querySelector(hash);
+                if (targetBox) {
+                    // Paslēpj visus citus aprakstus
+                    document.querySelectorAll('.service-info').forEach(function (info) {
+                        info.classList.remove('active');
+                    });
+                    // Parāda atbilstošo sadaļu
+                    const infoToShow = targetBox.querySelector('.service-info');
+                    if (infoToShow) {
+                        infoToShow.classList.add('active');
+                    }
+                    // Ritina uz attiecīgo sadaļu
+                    targetBox.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+    
 </head>
 </html>
