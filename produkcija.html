@@ -122,6 +122,31 @@
             text-align: center;
             margin-bottom: 30px;
         }
+             #searchInput {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        #filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        #filter-container input,
+        #filter-container select {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+
 
         /* Produkta kartiņu konteiners */
         .product-container {
@@ -136,7 +161,7 @@
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            overflow: visible;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -212,7 +237,7 @@
     <header>
         <h1>BERGS WORKSHOP</h1>
         <nav>
-            <a href="#">Par mums</a>
+            <a href="index.html">Par mums</a>
             <div class="dropdown">
                 <a href="pakalpojumi.html">Pakalpojumi</a>
                 <div class="dropdown-content">
@@ -228,6 +253,24 @@
     </header>
     <main>
         <h2>Mūsu produkcija</h2>
+        <div id="filter-container">
+            <input type="text" id="searchInput" placeholder="Meklēt produktu..." onkeyup="filterProducts()">
+            
+            <label for="minPrice">Min. cena: </label>
+            <input type="number" id="minPrice" placeholder="0" oninput="filterProducts()">
+            
+            <label for="maxPrice">Max. cena: </label>
+            <input type="number" id="maxPrice" placeholder="1000" oninput="filterProducts()">
+            
+            <label for="sortPrice">Kārtot pēc: </label>
+            <select id="sortPrice" onchange="sortProducts()">
+                <option value="default">Standarta</option>
+                <option value="asc">No lētākā</option>
+                <option value="desc">No dārgākā</option>
+            </select>
+        </div>
+        
+
         <div class="product-container">
             <!-- Produkta kartiņas -->
             <!-- Produkts 1 -->
@@ -302,6 +345,47 @@
         <p>&copy; 2025 BERGS WORKSHOP. Visas tiesības aizsargātas.</p>
     </footer>
 </body>
+<script>
+function filterProducts() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+    let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+    let products = document.querySelectorAll(".product-card");
+
+    products.forEach(product => {
+        let productName = product.querySelector("h3").textContent.toLowerCase();
+        let priceText = product.querySelector(".product-price").textContent.replace("€", "").replace(",", ".");
+        let productPrice = parseFloat(priceText);
+
+        if (
+            productName.includes(input) &&
+            productPrice >= minPrice &&
+            productPrice <= maxPrice
+        ) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+}
+
+function sortProducts() {
+    let container = document.querySelector(".product-container");
+    let products = Array.from(container.querySelectorAll(".product-card"));
+    let sortValue = document.getElementById("sortPrice").value;
+
+    products.sort((a, b) => {
+        let priceA = parseFloat(a.querySelector(".product-price").textContent.replace("€", "").replace(",", "."));
+        let priceB = parseFloat(b.querySelector(".product-price").textContent.replace("€", "").replace(",", "."));
+
+        return sortValue === "asc" ? priceA - priceB : sortValue === "desc" ? priceB - priceA : 0;
+    });
+
+    products.forEach(product => container.appendChild(product));
+}
+</script>
+
+    
 </html>
 
  <!-- Produkts 7 -->

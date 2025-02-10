@@ -7,7 +7,7 @@
     <body>
 
         <header>
-            <h1>BERGS WORKSHOP</h1>
+            <h1></a>BERGS WORKSHOP</h1>
             <nav>
                 <a href="#">Par mums</a>
                 <div class="dropdown">
@@ -22,6 +22,10 @@
                 <a href="cenas.html">Cenas</a>
                 <a href="musudarbi.html">Mūsu darbi</a>
             </nav>
+            <div class="auth-buttons">
+                <a href="login.html" class="login-button">Log In</a>
+                <a href="signup.html" class="signup-button">Sign Up</a>
+            </div>
         </header>
     
         <main>
@@ -44,8 +48,83 @@
             </aside>
         </main>
         <main>
-            <section class="articles-section">
-                <h2>Īpašie piedāvājumi</h2>
+            <!-- Produkta Karuselis -->
+            <h2><span>Produkti</span> ar īpašu piedāvājumu</h2>
+<div id="productCarousel" class="carousel">
+    <div class="carousel-track">
+        <!-- Produkts 1 -->
+        <div class="carousel-item">
+            <img src="keramika.jpeg" alt="Produkts 1">
+            <div class="product-info">
+                <h3>Keramiskā pārklājuma komplekts</h3>
+                <p>Aizsargā auto virsbūvi no netīrumiem un skrāpējumiem.</p>
+                <div class="product-price">€120.00</div>
+                <button class="buy-button">Pirkt</button>
+            </div>
+        </div>
+
+        <!-- Produkts 2 -->
+        <div class="carousel-item">
+            <img src="masinassampuns.jpg" alt="Produkts 2">
+            <div class="product-info">
+                <h3>Auto mazgāšanas šampūns</h3>
+                <p>PH neitrāls auto šampūns, kas efektīvi notīra netīrumus.</p>
+                <div class="product-price">€15.99</div>
+                <button class="buy-button">Pirkt</button>
+            </div>
+        </div>
+
+        <!-- Produkts 3 -->
+        <div class="carousel-item">
+            <img src="riepulidzeklis.jpg" alt="Produkts 3">
+            <div class="product-info">
+                <h3>Riepu spīduma līdzeklis</h3>
+                <p>Nodrošina ilgstošu riepu spīdumu un aizsardzību pret UV starojumu.</p>
+                <div class="product-price">€10.50</div>
+                <button class="buy-button">Pirkt</button>
+            </div>
+        </div>
+
+        <!-- Produkts 4 -->
+        <div class="carousel-item">
+            <img src="diskulidzeklis.jpg" alt="Produkts 4">
+            <div class="product-info">
+                <h3>Disku tīrītājs</h3>
+                <p>Efektīvs līdzeklis, kas noņem bremžu putekļus un netīrumus no diskiem.</p>
+                <div class="product-price">€12.99</div>
+                <button class="buy-button">Pirkt</button>
+            </div>
+        </div>
+
+        <!-- Produkts 5 -->
+        <div class="carousel-item">
+            <img src="vasks.jpg" alt="Produkts 5">
+            <div class="product-info">
+                <h3>Vaskošana un pulēšana</h3>
+                <p>Komplekts, kas atjauno auto spīdumu un aizsargā virsmu.</p>
+                <div class="product-price">€75.00</div>
+                <button class="buy-button">Pirkt</button>
+            </div>
+        </div>
+
+        <!-- Produkts 6 -->
+        <div class="carousel-item">
+            <img src="salonalidzeklis.jpg" alt="Produkts 6">
+            <div class="product-info">
+                <h3>Auto salona tīrīšanas līdzeklis</h3>
+                <p>Efektīvs un videi draudzīgs līdzeklis auto salona tīrīšanai.</p>
+                <div class="product-price">€19.99</div>
+                <button class="buy-button">Pirkt</button>
+            </div>
+        </div>
+    </div>
+    <!-- Karuseļa pogas -->
+    <button class="carousel-button left">&#10094;</button>
+    <button class="carousel-button right">&#10095;</button>
+
+</div>
+
+                <h2><span>Īpašie piedāvājumi</span> tikai pie mums</h2>
                 <div class="articles-container">
                     <div class="article-card">
                         <img src="ipasaispiedavajums1.jpg" alt="Raksta attēls">
@@ -124,7 +203,41 @@
             color: #ff6666;
             border-radius: 5px;
         }
+         /* podziņu stils*/
+            .auth-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
 
+        .auth-buttons a {
+            text-decoration: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .login-button {
+            background-color: #ffffff;
+            color: #333;
+            border: 2px solid #333;
+        }
+
+        .login-button:hover {
+            background-color: #333;
+            color: #ffffff;
+        }
+
+        .signup-button {
+            background-color: #ff6666;
+            color: #ffffff;
+        }
+
+        .signup-button:hover {
+            background-color: #ff9999;
+        }
         /* Izvelne taisa drop */
         .dropdown {
             position: relative;
@@ -249,6 +362,99 @@
         aside ul li:hover {
             transform: translateX(10px);
         }
+                        /* Stilizētais virsraksts */
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 600; /* Biežāks fonts */
+            color: #333;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            letter-spacing: 1px; /* Mazliet paplašina burtus, lai tas izskatās tīrāk */
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background-color: #ff6666;
+            border-radius: 5px;
+            opacity: 0.5; /* Ļoti smalka līnija */
+            transition: width 0.3s ease-in-out;
+        }
+
+        /* Kad pele ir uz virsraksta */
+        h2:hover::after {
+            width: 100%; /* Kad pele uz virsraksta, līnija pārvēršas par pilnu garumu */
+            opacity: 1;
+        }
+
+        h2 span {
+            color: #ff6666; /* Pievienojam vienu vārdu vai vārdu grupu, kas kļūst izceļas */
+            font-weight: 700;
+        }
+                  /* Karuselis */
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: calc(33.33% - 20px); /* Trīs bildes vienā rindā (piemēram, 100% / 3 - atstarpe) */
+            margin-right: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            text-align: center;
+            box-sizing: border-box;
+            /* Pārliecināmies, ka visiem elementiem ir vienāds augstums */
+            height: 100%; 
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;  /* Bildes saglabā proporcijas */
+            object-fit: contain; /* Saglabā attēlu proporcijas */
+        }
+
+        /* Karuseļa pogas */
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .carousel-button.left {
+            left: 10px;
+        }
+
+        .carousel-button.right {
+            right: 10px;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
         /* Rakstu sadaļa pilnā platumā */
         .articles-section {
             margin-top: 20px; /* Samazināta atstarpe virs "Īpašie piedāvājumi" sadaļas */
@@ -368,6 +574,35 @@
                 }
             }
         });
+        document.addEventListener('DOMContentLoaded', function () {
+    const carouselTrack = document.querySelector('.carousel-track');
+    const leftButton = document.querySelector('.carousel-button.left');
+    const rightButton = document.querySelector('.carousel-button.right');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const carouselItemWidth = carouselItems[0].offsetWidth + 20; // Atstarpe starp attēliem
+
+    let currentIndex = 0;
+    const totalItems = carouselItems.length;
+    const visibleItems = 3; // Atļauj trīs bildes vienā rindā
+
+    // Pārbaudām, vai ir vēl vairāk par trim produktiem, lai varētu ritināt
+    leftButton.addEventListener('click', function () {
+        if (currentIndex > 0) {
+            currentIndex--;
+            carouselTrack.style.transform = `translateX(-${currentIndex * carouselItemWidth}px)`;
+        }
+    });
+
+    rightButton.addEventListener('click', function () {
+        if (currentIndex < totalItems - visibleItems) {  // Neļauj pārkāpt robežu
+            currentIndex++;
+            carouselTrack.style.transform = `translateX(-${currentIndex * carouselItemWidth}px)`;
+        }
+    });
+});
+
+
+
     </script>
     
     
