@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produkcija | BERGS WORKSHOP</title>
+    <style>
+        /* Vispārējais lapas stils */
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f5;
+            color: #444;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Augšējā lapas daļa */
+        header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 15px;
+            transition: background 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ff6666;
+            border-radius: 5px;
+        }
+
+        /* Dropdown konteinera stils */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle; /* Nodrošina, ka dropdown ir vienā līmenī ar pārējām pogām */
+    }
+
+    /* Dropdown linka stils */
+    .dropdown > a {
+        display: inline-block;
+        padding: 10px 15px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    /* Dropdown linka hover efekts */
+    .dropdown > a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ff6666;
+        border-radius: 5px;
+    }
+
+    /* Dropdown satura pozicionēšana */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%; /* Nodrošina, ka dropdown izkrīt tieši zem vecāka elementa */
+        left: 0;
+        background-color: white;
+        min-width: 200px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 5px;
+    }
+
+    /* Dropdown satura linku stils */
+    .dropdown-content a {
+        color: #007BFF;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background 0.3s;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        color: #ff6666;
+    }
+
+    /* Dropdown hover efekts */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #444;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Produkta kartiņu konteiners */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Produkta kartiņas stils */
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .product-info p {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff6666;
+            margin-bottom: 10px;
+        }
+
+        .buy-button {
+            background-color: #ff6666;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #ff9999;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ff6666;
+        }
+
+        footer a:hover {
+            color: #ff9999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BERGS WORKSHOP</h1>
+        <nav>
+            <a href="#">Par mums</a>
+            <div class="dropdown">
+                <a href="pakalpojumi.html">Pakalpojumi</a>
+                <div class="dropdown-content">
+                    <a href="ieksejais-detailing.html">Iekšējais detailing</a>
+                    <a href="arejais-detailing.html">Ārējais detailing</a>
+                    <a href="specializetie-pakalpojumi.html">Specializētie pakalpojumi</a>
+                </div>
+            </div>
+            <a href="produkcija.html">Produkcija</a>
+            <a href="cenas.html">Cenas</a>
+            <a href="musudarbi.html">Mūsu darbi</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Mūsu produkcija</h2>
+        <div class="product-container">
+            <!-- Produkta kartiņas -->
+            <!-- Produkts 1 -->
+            <div class="product-card">
+                <img src="keramika.jpeg" alt="Produkts 1">
+                <div class="product-info">
+                    <h3>Keramiskā pārklājuma komplekts</h3>
+                    <p>Aizsargā auto virsbūvi no netīrumiem un skrāpējumiem.</p>
+                    <div class="product-price">€120.00</div>
+                    <button class="buy-button">Pirkt</button>
+                </div>
+            </div>
+
+            <!-- Produkts 2 -->
+            <div class="product-card">
+                <img src="masinassampuns.jpg" alt="Produkts 2">
+                <div class="product-info">
+                    <h3>Auto mazgāšanas šampūns</h3>
+                    <p>PH neitrāls auto šampūns, kas efektīvi notīra netīrumus.</p>
+                    <div class="product-price">€15.99</div>
+                    <button class="buy-button">Pirkt</button>
+                </div>
+            </div>
+
+            <!-- Produkts 3 -->
+            <div class="product-card">
+                <img src="riepulidzeklis.jpg" alt="Produkts 3">
+                <div class="product-info">
+                    <h3>Riepu spīduma līdzeklis</h3>
+                    <p>Nodrošina ilgstošu riepu spīdumu un aizsardzību pret UV starojumu.</p>
+                    <div class="product-price">€10.50</div>
+                    <button class="buy-button">Pirkt</button>
+                </div>
+            </div>
+
+            <!-- Produkts 4 -->
+            <div class="product-card">
+                <img src="diskulidzeklis.jpg" alt="Produkts 4">
+                <div class="product-info">
+                    <h3>Disku tīrītājs</h3>
+                    <p>Efektīvs līdzeklis, kas noņem bremžu putekļus un netīrumus no diskiem.</p>
+                    <div class="product-price">€12.99</div>
+                    <button class="buy-button">Pirkt</button>
+                </div>
+            </div>
+
+            <!-- Produkts 5 -->
+            <div class="product-card">
+                <img src="vasks.jpg" alt="Produkts 5">
+                <div class="product-info">
+                    <h3>Vaskošana un pulēšana</h3>
+                    <p>Komplekts, kas atjauno auto spīdumu un aizsargā virsmu.</p>
+                    <div class="product-price">€75.00</div>
+                    <button class="buy-button">Pirkt</button>
+                </div>
+            </div>
+
+            <!-- Produkts 6 -->
+            <div class="product-card">
+                <img src="salonalidzeklis.jpg" alt="Produkts 6">
+                <div class="product-info">
+                    <h3>Auto salona tīrīšanas līdzeklis</h3>
+                    <p>Efektīvs un videi draudzīgs līdzeklis auto salona tīrīšanai.</p>
+                    <div class="product-price">€19.99</div>
+                    <button class="buy-button">Pirkt</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 BERGS WORKSHOP. Visas tiesības aizsargātas.</p>
+    </footer>
+</body>
+</html>
+
+ <!-- Produkts 7 -->
