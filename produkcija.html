@@ -1,278 +1,199 @@
 <!DOCTYPE html>
 <html lang="lv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produkcija | BERGS WORKSHOP</title>
-    <style>
-        /* Vispārējais lapas stils */
-        body {
-            font-family: 'Helvetica Neue', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f5;
-            color: #444;
-        }
-
-        a {
-            text-decoration: none;
-            color: #007BFF;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Augšējā lapas daļa */
-        header {
-            background: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
-        }
-
-        nav a {
-            color: white;
-            padding: 10px 15px;
-            transition: background 0.3s, color 0.3s;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #ff6666;
-            border-radius: 5px;
-        }
-
-        /* Dropdown konteinera stils */
-    .dropdown {
-        position: relative;
-        display: inline-block;
-        vertical-align: middle; /* Nodrošina, ka dropdown ir vienā līmenī ar pārējām pogām */
-    }
-
-    /* Dropdown linka stils */
-    .dropdown > a {
-        display: inline-block;
-        padding: 10px 15px;
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background 0.3s, color 0.3s;
-    }
-
-    /* Dropdown linka hover efekts */
-    .dropdown > a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        color: #ff6666;
-        border-radius: 5px;
-    }
-
-    /* Dropdown satura pozicionēšana */
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        top: 100%; /* Nodrošina, ka dropdown izkrīt tieši zem vecāka elementa */
-        left: 0;
-        background-color: white;
-        min-width: 200px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        border-radius: 5px;
-    }
-
-    /* Dropdown satura linku stils */
-    .dropdown-content a {
-        color: #007BFF;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        transition: background 0.3s;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
-        color: #ff6666;
-    }
-
-    /* Dropdown hover efekts */
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-        main {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        h1, h2 {
-            color: #444;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-             #searchInput {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        #filter-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-            align-items: center;
-        }
-
-        #filter-container input,
-        #filter-container select {
-            padding: 8px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-
-
-        /* Produkta kartiņu konteiners */
-        .product-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        /* Produkta kartiņas stils */
-        .product-card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: visible;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product-info h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #444;
-        }
-
-        .product-info p {
-            font-size: 1em;
-            margin-bottom: 15px;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        .product-price {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #ff6666;
-            margin-bottom: 10px;
-        }
-
-        .buy-button {
-            background-color: #ff6666;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background 0.3s;
-        }
-
-        .buy-button:hover {
-            background-color: #ff9999;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #ff6666;
-        }
-
-        footer a:hover {
-            color: #ff9999;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produkcija | BERGS WORKSHOP</title>
+<style>
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+header {
+    background: #222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+nav a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+nav a:hover {
+    background: rgba(255,255,255,0.2);
+    color: #ff6666;
+    border-radius: 8px;
+}
+.dropdown {
+    position: relative;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1;
+}
+.dropdown-content a {
+    color: #007BFF;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.dropdown-content a:hover {
+    background: #f0f0f0;
+    color: #ff6666;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+}
+h2 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #444;
+    margin-bottom: 30px;
+}
+#filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+#filter-container input,
+#filter-container select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+#searchInput {
+    width: 300px;
+}
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.product-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+    cursor: pointer;
+}
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+.product-info {
+    padding: 20px;
+    text-align: center;
+}
+.product-info h3 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    color: #333;
+}
+.product-info p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 15px;
+}
+.product-price {
+    font-size: 1.2em;
+    color: #ff6666;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.buy-button {
+    background: #ff6666;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+.buy-button:hover {
+    background: #ff9999;
+}
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+footer a {
+    color: #ff6666;
+}
+footer a:hover {
+    color: #ff9999;
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>BERGS WORKSHOP</h1>
-        <nav>
-            <a href="index.html">Par mums</a>
-            <div class="dropdown">
-                <a href="pakalpojumi.html">Pakalpojumi</a>
-                <div class="dropdown-content">
-                    <a href="ieksejais-detailing.html">Iekšējais detailing</a>
-                    <a href="arejais-detailing.html">Ārējais detailing</a>
-                    <a href="specializetie-pakalpojumi.html">Specializētie pakalpojumi</a>
-                </div>
+<header>
+    <h1>BERGS WORKSHOP</h1>
+    <nav>
+        <a href="index.html">Par mums</a>
+        <div class="dropdown">
+            <a href="pakalpojumi.html">Pakalpojumi</a>
+            <div class="dropdown-content">
+                <a href="ieksejais-detailing.html">Iekšējais detailing</a>
+                <a href="arejais-detailing.html">Ārējais detailing</a>
+                <a href="specializetie-pakalpojumi.html">Specializētie pakalpojumi</a>
             </div>
-            <a href="produkcija.html">Produkcija</a>
-            <a href="cenas.html">Cenas</a>
-            <a href="musudarbi.html">Mūsu darbi</a>
-        </nav>
-    </header>
-    <main>
-        <h2>Mūsu produkcija</h2>
-        <div id="filter-container">
-            <input type="text" id="searchInput" placeholder="Meklēt produktu..." onkeyup="filterProducts()">
-            
-            <label for="minPrice">Min. cena: </label>
-            <input type="number" id="minPrice" placeholder="0" oninput="filterProducts()">
-            
-            <label for="maxPrice">Max. cena: </label>
-            <input type="number" id="maxPrice" placeholder="1000" oninput="filterProducts()">
-            
-            <label for="sortPrice">Kārtot pēc: </label>
-            <select id="sortPrice" onchange="sortProducts()">
-                <option value="default">Standarta</option>
-                <option value="asc">No lētākā</option>
-                <option value="desc">No dārgākā</option>
-            </select>
         </div>
-        
-
-        <div class="product-container">
-            <!-- Produkta kartiņas -->
+        <a href="produkcija.html">Produkcija</a>
+        <a href="cenas.html">Cenas</a>
+        <a href="musudarbi.html">Mūsu darbi</a>
+    </nav>
+</header>
+<main>
+    <h2>Mūsu produkcija</h2>
+    <div id="filter-container">
+        <input type="text" id="searchInput" placeholder="Meklēt produktu..." onkeyup="filterProducts()">
+        <input type="number" id="minPrice" placeholder="Min. cena" oninput="filterProducts()">
+        <input type="number" id="maxPrice" placeholder="Max. cena" oninput="filterProducts()">
+        <select id="sortPrice" onchange="sortProducts()">
+            <option value="default">Standarta kārtošana</option>
+            <option value="asc">No lētākā</option>
+            <option value="desc">No dārgākā</option>
+        </select>
+    </div>
+    <div class="product-container">
+        <!-- Produkta kartiņas -->
             <!-- Produkts 1 -->
             <div class="product-card">
                 <img src="keramika.jpeg" alt="Produkts 1">
@@ -339,12 +260,11 @@
                 </div>
             </div>
         </div>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 BERGS WORKSHOP. Visas tiesības aizsargātas.</p>
-    </footer>
-</body>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2025 BERGS WORKSHOP. Visas tiesības aizsargātas.</p>
+</footer>
 <script>
 function filterProducts() {
     let input = document.getElementById("searchInput").value.toLowerCase();
@@ -354,14 +274,8 @@ function filterProducts() {
 
     products.forEach(product => {
         let productName = product.querySelector("h3").textContent.toLowerCase();
-        let priceText = product.querySelector(".product-price").textContent.replace("€", "").replace(",", ".");
-        let productPrice = parseFloat(priceText);
-
-        if (
-            productName.includes(input) &&
-            productPrice >= minPrice &&
-            productPrice <= maxPrice
-        ) {
+        let price = parseFloat(product.querySelector(".product-price").textContent.replace("€", "").replace(",", "."));
+        if (productName.includes(input) && price >= minPrice && price <= maxPrice) {
             product.style.display = "block";
         } else {
             product.style.display = "none";
@@ -384,8 +298,5 @@ function sortProducts() {
     products.forEach(product => container.appendChild(product));
 }
 </script>
-
-    
+</body>
 </html>
-
- <!-- Produkts 7 -->

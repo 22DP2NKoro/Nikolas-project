@@ -1,121 +1,169 @@
 <!DOCTYPE html>
 <html lang="lv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BERGS WORKSHOP - Pakalpojumi</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        header {
-            background: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 a {
-            color: white;
-            text-decoration: none;
-        }
-
-        nav {
-            margin-top: 10px;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 20px;
-            padding: 10px 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #ff6666;
-        }
-
-        .service {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 60px auto;
-            padding: 40px;
-            max-width: 1000px;
-        }
-
-        .service:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .service img {
-            width: 45%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .service-info {
-            width: 50%;
-        }
-
-        .service-info h3 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        .service-info p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #ff6666;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #ff9999;
-        }
-
-        @media (max-width: 768px) {
-            .service {
-                flex-direction: column !important;
-                text-align: center;
-            }
-
-            .service img {
-                width: 90%;
-                margin-bottom: 20px;
-            }
-
-            .service-info {
-                width: 90%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BERGS WORKSHOP - Pakalpojumi</title>
+<style>
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafb;
+    color: #333;
+}
+header {
+    background: #222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1em;
+}
+nav a:hover {
+    color: #ff6666;
+}
+.auth-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.login-button, .signup-button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-button {
+    background: white;
+    color: #222;
+    border: 2px solid #222;
+}
+.signup-button {
+    background: #ff6666;
+    color: white;
+    margin-left: 10px;
+}
+.service {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 60px auto;
+    padding: 40px;
+    max-width: 1200px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+.service:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.service:hover {
+    transform: scale(1.02);
+}
+.service img {
+    width: 45%;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.service-info {
+    width: 50%;
+    padding: 20px;
+}
+.service-info h3 {
+    color: #ff6666;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.service-info p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+.more-info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, padding 0.6s ease;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 0;
+}
+.more-info.open {
+    max-height: 1000px;
+    padding-top: 15px;
+}
+.more-info ul {
+    padding-left: 20px;
+}
+.more-info ul li {
+    margin-bottom: 10px;
+}
+.button {
+    display: inline-block;
+    background-color: #ff6666;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.button:hover {
+    background-color: #ff9999;
+}
+.toggle-icon {
+    font-size: 1.2em;
+    color: #888;
+    margin-left: 15px;
+    transition: 0.3s;
+}
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+}
+footer a {
+    color: #ff6666;
+    text-decoration: none;
+}
+footer a:hover {
+    color: #ff9999;
+}
+@media (max-width: 768px) {
+    .service {
+        flex-direction: column !important;
+        text-align: center;
+    }
+    .service img, .service-info {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+    .service-info h3 {
+        justify-content: center;
+    }
+}
+</style>
 </head>
 <body>
 
 <header>
-    <h1><a href="index.html">BERGS WORKSHOP</a></h1>
+    <h1><a href="index.html" style="color:white;text-decoration:none;">BERGS WORKSHOP</a></h1>
     <nav>
         <a href="index.html">Par mums</a>
         <a href="pakalpojumi.html">Pakalpojumi</a>
@@ -123,35 +171,72 @@
         <a href="cenas.html">Cenas</a>
         <a href="musudarbi.html">Mūsu darbi</a>
     </nav>
+    <div class="auth-buttons">
+        <a href="login.html" class="login-button">Log In</a>
+        <a href="signup.html" class="signup-button">Sign Up</a>
+    </div>
 </header>
 
 <main>
-    <div class="service" id="internal-detailing">
+    <!-- Iekšējais detailing -->
+    <div class="service">
         <div class="service-info">
-            <h3>Iekšējais detailing</h3>
-            <p>Šis pakalpojums ietver pilnu automašīnas salona tīrīšanu, ieskaitot audumu un ādas kopšanu. Pateicoties profesionālai tīrīšanas metodei, tiek noņemti netīrumi, smakas un traipi, atjaunojot automašīnas salona sākotnējo izskatu.</p>
-            <p><strong>Iekļauts:</strong> Pilna salona tīrīšana, plastmasas un ādas apstrāde, smaku noņemšana ar ozonu.</p>
-            <p><strong>Ieguvumi:</strong> Salona higiēna, ilgstoša tīrība un svaigs aromāts.</p>
+            <h3>Iekšējais detailing <span class="toggle-icon">+</span></h3>
+            <p>Profesionāls automašīnas salona detailing pakalpojums, kas sniedz pilnīgu salona tīrību, svaigumu un vizuālu atjaunošanu.</p>
+            <div class="more-info">
+                <p><strong>Pakalpojuma apraksts:</strong> Rūpīgs, dziļš un detalizēts automašīnas salona tīrīšanas process ar modernām metodēm un profesionāliem līdzekļiem.</p>
+                <ul>
+                    <li><strong>Pilna salona tīrīšana:</strong>
+                        <ul>
+                            <li>Grīdas un paklāju ķīmiskā tīrīšana</li>
+                            <li>Sēdekļu audumu vai ādas tīrīšana un kondicionēšana</li>
+                            <li>Salona griestu, durvju paneļu un kabatu tīrīšana</li>
+                        </ul>
+                    </li>
+                    <li><strong>Paneļu un plastmasu apstrāde:</strong> Putekļu un netīrumu noņemšana, aizsargpārklājums</li>
+                    <li><strong>Ādas kopšana:</strong> Attīrīšana, kondicionēšana un aizsardzība</li>
+                    <li><strong>Ozonēšanas procedūra:</strong> Smaku neitralizēšana un gaisa atsvaidzināšana</li>
+                </ul>
+            </div>
+            <a href="#" class="button">Pieteikties</a>
         </div>
         <img src="https://surfnshine.com/wp-content/uploads/2023/10/interior-detailing.jpg" alt="Iekšējais detailing">
     </div>
 
-    <div class="service" id="exterior-detailing">
+    <!-- Ārējais detailing -->
+    <div class="service">
         <div class="service-info">
-            <h3>Ārējais detailing</h3>
-            <p>Mūsu komanda nodrošina profesionālu automašīnas ārējās virsmas apstrādi, kas ietver pulēšanu, vaskošanu un aizsargpārklājumu uzklāšanu. Tas palīdz saglabāt automašīnas krāsu un pasargāt no laika apstākļu ietekmes.</p>
-            <p><strong>Iekļauts:</strong> Virsbūves mazgāšana, pulēšana, keramiskie pārklājumi.</p>
-            <p><strong>Ieguvumi:</strong> Ilgāks krāsas mūžs, aizsardzība pret netīrumiem un skrāpējumiem.</p>
+            <h3>Ārējais detailing <span class="toggle-icon">+</span></h3>
+            <p>Rūpīgs un profesionāls automašīnas ārējās virsbūves detailing, kas garantē ilglaicīgu spīdumu un aizsardzību.</p>
+            <div class="more-info">
+                <p><strong>Pakalpojuma apraksts:</strong> Visaptveroša virsbūves kopšana, kas aizsargā automašīnas krāsojumu un uzlabo izskatu.</p>
+                <ul>
+                    <li><strong>Virsbūves dziļā mazgāšana:</strong> Roku darbs, grūti pieejamu vietu tīrīšana</li>
+                    <li><strong>Pulēšana un krāsas atjaunošana:</strong> Skrāpējumu novēršana un spīduma atjaunošana</li>
+                    <li><strong>Keramiskais pārklājums:</strong> Aizsardzība pret UV, ķīmiskiem piesārņojumiem, bojājumiem</li>
+                    <li><strong>Vaskošana:</strong> Papildus spīdums un ūdens atgrūšana</li>
+                </ul>
+            </div>
+            <a href="#" class="button">Pieteikties</a>
         </div>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcPMQjIwvGPhi0ig8CpzRio9YvMXxPADiNSw&s" alt="Ārējais detailing">
     </div>
 
-    <div class="service" id="specialized-services">
+    <!-- Specializētie pakalpojumi -->
+    <div class="service">
         <div class="service-info">
-            <h3>Specializētie pakalpojumi</h3>
-            <p>Piedāvājam detalizētus pakalpojumus specifisku automašīnas daļu kopšanai, ieskaitot motora nodalījuma tīrīšanu un lukturu pulēšanu. Šie pakalpojumi palīdz uzturēt automašīnas izskatu un tehnisko stāvokli ilgtermiņā.</p>
-            <p><strong>Iekļauts:</strong> Motora nodalījuma tīrīšana, ozonēšana, lukturu pulēšana.</p>
-            <p><strong>Ieguvumi:</strong> Labāka lukturu redzamība, tīrāks un drošāks motors.</p>
+            <h3>Specializētie pakalpojumi <span class="toggle-icon">+</span></h3>
+            <p>Specifiski risinājumi automašīnas būtisko daļu aizsardzībai un vizuālajai uzlabošanai.</p>
+            <div class="more-info">
+                <p><strong>Pakalpojuma apraksts:</strong> Motora, lukturu, stiklu un virsbūves īpašā apstrāde un aizsardzība.</p>
+                <ul>
+                    <li><strong>Motora nodalījuma tīrīšana:</strong> Eļļas traipu un putekļu noņemšana</li>
+                    <li><strong>Lukturu pulēšana un atjaunošana:</strong> Skrāpējumu noņemšana, dzidruma atjaunošana</li>
+                    <li><strong>Logu un stiklu hidrofobais pārklājums:</strong> Labāka redzamība un tīrība</li>
+                    <li><strong>Aizsargplēves uzklāšana:</strong> Virsbūves aizsardzība pret bojājumiem</li>
+                </ul>
+            </div>
+            <a href="#" class="button">Pieteikties</a>
         </div>
         <img src="https://s25180.pcdn.co/wp-content/uploads/2018/08/iStock-543601188.jpg" alt="Specializētie pakalpojumi">
     </div>
@@ -159,12 +244,24 @@
 
 <footer>
     <p>&copy; 2024 BERGS WORKSHOP.</p>
-    <p>Seko mums:
-        <a href="#">Instagram</a> |
-        <a href="#">Facebook</a> |
-        <a href="#">TikTok</a>
-    </p>
+    <p>Seko mums: <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">TikTok</a></p>
 </footer>
+
+<script>
+document.querySelectorAll('.service').forEach(item => {
+    const icon = item.querySelector('.toggle-icon');
+    const moreInfo = item.querySelector('.more-info');
+    item.addEventListener('click', () => {
+        if (moreInfo.classList.contains('open')) {
+            moreInfo.classList.remove('open');
+            icon.textContent = '+';
+        } else {
+            moreInfo.classList.add('open');
+            icon.textContent = '-';
+        }
+    });
+});
+</script>
 
 </body>
 </html>

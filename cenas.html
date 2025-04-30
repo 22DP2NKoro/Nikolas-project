@@ -1,195 +1,226 @@
 <!DOCTYPE html>
-<html lang="lv"> 
+<html lang="lv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Es ari no telefona skatīšos -->
-    <title>BERGS WORKSHOP - Cenas</title> <!--virsraksts-->
-    <body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BERGS WORKSHOP - Cenas</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #f9fafb;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover {
+      color: #ff6666;
+    }
+    .auth-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .login-button, .signup-button {
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      border: none;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .login-button { background: white; color: #333; border: 2px solid #333; }
+    .signup-button { background: #ff6666; color: white; }
+    .signup-button:hover { background: #ff9999; }
 
-        <header>
-            <h1><a href="index.html">BERGS WORKSHOP</a></h1>
-            <nav>
-                <a href="index.html">Par mums</a>
-                <div class="dropdown">
-                    <a href="pakalpojumi.html">Pakalpojumi</a>
-                    <div class="dropdown-content">
-                        <a href="pakalpojumi.html#internal-detailing">Iekšējais detailing</a>
-                        <a href="pakalpojumi.html#exterior-detailing">Ārējais detailing</a>
-                        <a href="pakalpojumi.html#specialized-services">Specializētie pakalpojumi</a>
-                    </div>
-                </div>
-                <a href="produkcija.html">Produkcija</a>
-                <a href="cenas.html">Cenas</a>
-                <a href="musudarbi.html">Mūsu darbi</a>
-            </nav>
-        </header>
-    
-        <!-- Cenas -->
-        <main>
-            <table>
-                <tr>
-                    <th>Pakalpojums</th>
-                    <th>Cena</th>
-                </tr>
-                <tr>
-                    <td>Iekšējais detailing</td>
-                    <td>€50 - €100</td>
-                </tr>
-                <tr>
-                    <td>Ārējais detailing</td>
-                    <td>€70 - €150</td>
-                </tr>
-                <tr>
-                    <td>Motora nodalījuma tīrīšana</td>
-                    <td>€40 - €80</td>
-                </tr>
-                <tr>
-                    <td>Ozonēšana</td>
-                    <td>€30 - €60</td>
-                </tr>
-                <tr>
-                    <td>Lukturu pulēšana</td>
-                    <td>€25 - €50</td>
-                </tr>
-                <tr>
-                    <td>Pulēšana un vaskošana</td>
-                    <td>€100 - €200</td>
-                </tr>
-            </table>
-        </main>
-    
-        <!--Kājene-->
-        <footer>
-            <p>&copy; 2024 BERGS WORKSHOP.</p>
-            <p>Seko mums: 
-                <a href="#">Instagram</a> |
-                <a href="#">Facebook</a> |
-                <a href="#">TikTok</a>
-            </p>
-        </footer>
-    
-    </body>
-    
-    <style>
-        body {
-            font-family: 'Helvetica Neue', sans-serif;
-            margin: 0; /* Noņemu noklusētās malas */
-            padding: 0; /* Noņemu noklusēto iekšējo atstarpi */
-            background-color: #f0f0f5; /* Peleks fons */
-            color: #444; /* Peleka teksta krāsa */
-        }
+    section {
+      padding: 80px 20px;
+      position: relative;
+    }
+    .hero {
+      background: linear-gradient(135deg, #ff6666, #ff9999);
+      color: white;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      padding: 100px 20px;
+    }
+    .hero h2 {
+      font-size: 3em;
+      animation: fadeInDown 1s ease-out;
+    }
+    .hero p {
+      font-size: 1.2em;
+      margin-top: 20px;
+      animation: fadeInUp 1.5s ease-out;
+    }
 
-        header {
-            background: #333; /* Tumši peleks fons galvenei */
-            color: white; /* Balta teksta krāsa */
-            padding: 20px; /* 20px atstarpe no iekšmalas */
-            text-align: center; /* Lai saturs būtu horizontāli centrēts */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Lai galvenei ir ēna */
-        }
+    .service-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+    .service-block:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .service-text {
+      flex: 1;
+      padding: 20px;
+      animation: fadeInLeft 1s ease-out;
+    }
+    .service-text h3 {
+      font-size: 2.5em;
+      color: #ff6666;
+    }
+    .service-text ul {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+    .service-text ul li::before {
+      content: "\2714";
+      color: #ff6666;
+      margin-right: 10px;
+    }
+    .service-image {
+      flex: 1;
+      padding: 20px;
+    }
+    .service-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: fadeInRight 1s ease-out;
+    }
+    .button {
+      margin-top: 20px;
+      display: inline-block;
+      background: #ff6666;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .button:hover { background: #ff9999; }
 
-        header h1 a {
-            color: white; 
-            text-decoration: none; /* Noņemu apakšsvītru no saites */
-        }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    footer a { color: #ff6666; }
+    footer a:hover { color: #ff9999; }
 
-        nav a {
-            color: white; /* Baltas navigācijas saites */
-            margin: 0 20px; /* Atstarpe starp saitēm */
-            padding: 10px 15px; /* Iekšējā atstarpīte saitēm */
-            transition: background 0.3s, color 0.3s; /* Pāreja hover efektam */
-            font-weight: bold; /* Trekns fonts saitēm */
-            text-decoration: none; 
-        }
-
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2); /*Kad hover tad ir gaišs*/
-            color: #ff6666;
-            border-radius: 5px;
-        }
-
-        /* Pakalpojuma drops */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            border-radius: 5px;
-        }
-
-        .dropdown-content a {
-            color: #007BFF;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background 0.3s;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-            color: #ff6666;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* tabulas stils */
-        table {
-            width: 80%;
-            margin: 50px auto;
-            border-collapse: collapse; /*Noņem starp sunam apmeles starpas*/
-            background: white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd; /* Apakšējā mala katrai šūnai */
-        }
-
-        th {
-            background-color: #333;
-            color: white;
-        }
-
-        td {
-            color: #444;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        footer a {
-            color: #ff6666;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #ff9999;
-        }
-
-    </style>
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInLeft {
+      from {opacity: 0; transform: translateX(-30px);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+    @keyframes fadeInRight {
+      from {opacity: 0; transform: translateX(30px);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+  </style>
 </head>
+<body>
 
+<header>
+    <h1><a href="index.html" style="color:white;text-decoration:none;">BERGS WORKSHOP</a></h1>
+  <nav>
+    <a href="index.html">Par mums</a>
+    <a href="pakalpojumi.html">Pakalpojumi</a>
+    <a href="produkcija.html">Produkcija</a>
+    <a href="cenas.html">Cenas</a>
+    <a href="musudarbi.html">Mūsu darbi</a>
+  </nav>
+  <div class="auth-buttons">
+    <a href="login.html" class="login-button">Log In</a>
+    <a href="signup.html" class="signup-button">Sign Up</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h2>Cenu Diapazons</h2>
+  <p>Katram auto individuāla pieeja un pielāgoti piedāvājumi atkarībā no jūsu vajadzībām, spiezat pieteikties un cena tiks aprekinata tiesi jusu auto!</p>
+</section>
+
+<main>
+  <section class="service-block">
+    <div class="service-text">
+      <h3>Iekšējais Detailing</h3>
+      <ul>
+        <li>Grīdas un sēdekļu tīrīšana</li>
+        <li>Ādas kopšana</li>
+        <li>Salona ozonēšana</li>
+      </ul>
+      <div class="price-tag">Cena: €50 - €100</div>
+      <a href="#" class="button">Pieteikties</a>
+    </div>
+    <div class="service-image">
+      <img src="interiorcenas.jpg" alt="Salona tīrīšana">
+    </div>
+  </section>
+
+  <section class="service-block">
+    <div class="service-text">
+      <h3>Ārējais Detailing</h3>
+      <ul>
+        <li>Roku mazgāšana un pulēšana</li>
+        <li>Keramiskais pārklājums</li>
+        <li>Virspuses aizsardzība</li>
+      </ul>
+      <div class="price-tag">Cena: €70 - €150</div>
+      <a href="#" class="button">Pieteikties</a>
+    </div>
+    <div class="service-image">
+      <img src="exteriorcenas.jpeg" alt="Virsbūves kopšana">
+    </div>
+  </section>
+
+  <section class="service-block">
+    <div class="service-text">
+      <h3>Specializētie Pakalpojumi</h3>
+      <ul>
+        <li>Motora tīrīšana</li>
+        <li>Lukturu pulēšana</li>
+        <li>Stiklu aizsardzība</li>
+      </ul>
+      <div class="price-tag">Cena: €25 - €80</div>
+      <a href="#" class="button">Pieteikties</a>
+    </div>
+    <div class="service-image">
+      <img src="specializetiecenas.jpg" alt="Specializētie pakalpojumi">
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 BERGS WORKSHOP. Visas tiesības aizsargātas.</p>
+  <p><a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">TikTok</a></p>
+</footer>
+
+</body>
 </html>

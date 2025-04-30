@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pieteikties - BERGS WORKSHOP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 40px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 16px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 20px;
+      display: block;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .checkbox-group, .radio-group {
+      margin-top: 10px;
+    }
+    .checkbox-group label, .radio-group label {
+      display: block;
+      font-weight: normal;
+    }
+    .time-slots {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .time-slot {
+      padding: 10px 15px;
+      background: #eee;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .time-slot.selected {
+      background: #ff6666;
+      color: white;
+    }
+    .button {
+      background-color: #ff6666;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .button:hover {
+      background-color: #ff9999;
+    }
+    #totalPrice {
+      margin-top: 20px;
+      font-size: 1.2em;
+      text-align: right;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pieteikties uz detailing</h2>
+  <form id="bookingForm">
+    <label>Pakalpojumi:</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="service" value="interior" data-price="60"> Iekšējais detailing</label>
+      <label><input type="checkbox" name="service" value="exterior" data-price="70"> Ārējais detailing</label>
+      <label><input type="checkbox" name="service" value="ozone" data-price="25"> Ozonēšana</label>
+      <label><input type="checkbox" name="service" value="lights" data-price="30"> Lukturu spodrināšana</label>
+    </div>
+
+    <label>Izvēlies marku un modeli:</label>
+    <select id="carSelect">
+      <option value="">-- Izvēlies --</option>
+      <option value="Audi A4" data-multiplier="1">Audi A4 (Vieglā)</option>
+      <option value="BMW 5" data-multiplier="1.2">BMW 5 (Lielā)</option>
+      <option value="BMW X5" data-multiplier="1.4">BMW X5 (SUV)</option>
+      <option value="Mercedes Vito" data-multiplier="1.5">Mercedes Vito (Mikroautobuss)</option>
+      <option value="Toyota RAV4" data-multiplier="1.3">Toyota RAV4 (SUV)</option>
+      <option value="Volkswagen Golf" data-multiplier="1">VW Golf (Vieglā)</option>
+      <option value="Volvo XC90" data-multiplier="1.5">Volvo XC90 (Liels SUV)</option>
+    </select>
+
+    <label>Automašīnas stāvoklis:</label>
+    <div class="radio-group">
+      <label><input type="radio" name="condition" value="1" checked> Normāls</label>
+      <label><input type="radio" name="condition" value="1.2"> Vidēji netīrs</label>
+      <label><input type="radio" name="condition" value="1.5"> Ļoti netīrs</label>
+    </div>
+
+    <label>Izvēlies datumu:</label>
+    <input type="date" id="datePicker" required>
+
+    <div id="timeSlotSection" style="display:none;">
+      <label>Pieejamie laiki:</label>
+      <div class="time-slots" id="timeSlots">
+        <!-- Laiki tiks ģenerēti -->
+      </div>
+    </div>
+
+    <div id="totalPrice">Kopējā cena: €0.00</div>
+    <button type="submit" class="button">Pieteikties</button>
+  </form>
+</div>
+
+<script>
+const form = document.getElementById('bookingForm');
+const carSelect = document.getElementById('carSelect');
+const datePicker = document.getElementById('datePicker');
+const timeSlotSection = document.getElementById('timeSlotSection');
+const timeSlotsDiv = document.getElementById('timeSlots');
+const priceDisplay = document.getElementById('totalPrice');
+
+const busyDates = ["2025-05-01", "2025-05-03"];
+let selectedTime = "";
+
+const availableTimes = ["10:00", "12:00", "14:00", "16:00"];
+
+// Cena aprēķins
+function calculatePrice() {
+  let baseTotal = 0;
+
+  const services = form.querySelectorAll('input[name="service"]:checked');
+  services.forEach(s => {
+    baseTotal += parseFloat(s.dataset.price);
+  });
+
+  const carMultiplier = parseFloat(carSelect.selectedOptions[0]?.dataset.multiplier || 1);
+  const conditionMultiplier = parseFloat(form.querySelector('input[name="condition"]:checked').value);
+
+  const final = baseTotal * carMultiplier * conditionMultiplier;
+  priceDisplay.textContent = `Kopējā cena: €${final.toFixed(2)}`;
+}
+
+// Uzspiežot uz dienas - rādi laikus
+datePicker.addEventListener('input', () => {
+  const selected = datePicker.value;
+  if (busyDates.includes(selected)) {
+    alert("Šis datums ir pilnībā aizņemts.");
+    datePicker.value = '';
+    timeSlotSection.style.display = 'none';
+    return;
+  }
+
+  // Parādīt laikus
+  timeSlotSection.style.display = 'block';
+  timeSlotsDiv.innerHTML = '';
+  selectedTime = "";
+
+  availableTimes.forEach(time => {
+    const div = document.createElement('div');
+    div.classList.add('time-slot');
+    div.textContent = time;
+    div.addEventListener('click', () => {
+      document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+      div.classList.add('selected');
+      selectedTime = time;
+    });
+    timeSlotsDiv.appendChild(div);
+  });
+});
+
+// Cenu atjaunošana
+form.querySelectorAll('input[name="service"], input[name="condition"], #carSelect').forEach(el => {
+  el.addEventListener('change', calculatePrice);
+});
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const car = carSelect.value;
+  const date = datePicker.value;
+  const services = [...form.querySelectorAll('input[name="service"]:checked')].map(el => el.nextSibling.textContent.trim());
+
+  if (!car || !date || !selectedTime || services.length === 0) {
+    alert("Lūdzu aizpildiet visus laukus, izvēlieties laiku un pakalpojumus.");
+    return;
+  }
+
+  alert(`Pieteikums pieņemts!\nAuto: ${car}\nDatums: ${date} plkst. ${selectedTime}\nPakalpojumi: ${services.join(", ")}\n${priceDisplay.textContent}`);
+});
+</script>
+
+</body>
+</html>
